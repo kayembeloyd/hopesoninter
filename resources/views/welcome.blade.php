@@ -28,7 +28,6 @@
 
               .frame {
                 display:flex;
-
                 width:100vw;
                 height:100vh;
                 justify-content:center;
@@ -41,14 +40,12 @@
 
               .line-1{
                 width: 1px;
-
                 border: 2px solid #FFFFFF;
                 background: #ffffff;
               }
 
               .grp-1{
                 margin-left: 20px;
-
               }
 
               .text-1{
@@ -56,7 +53,6 @@
                 font-style: normal;
                 font-weight: 500;
                 font-size: 48px;
-                
                 color: #FFFFFF;
               }
 
