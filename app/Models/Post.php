@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Post extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'short_description',
+        'long_description'
+    ];
+
+    public function post_media()
+    {
+        return $this->hasMany(PostMedia::class);
+    }
+}

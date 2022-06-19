@@ -17,10 +17,21 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('access')->nullable();
+            $table->string('phone_numbers')->nullable();
+            
+            $table->unsignedBigInteger('requesting_membership_community_id')->nullable();
+            $table->unsignedBigInteger('community_id')->nullable();
+            $table->unsignedBigInteger('meeting_id')->nullable();
+            
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->index('requesting_membership_community_id');
+            $table->index('community_id');
+            $table->index('meeting_id');
         });
     }
 
