@@ -87,7 +87,7 @@
                 <div class="grp-1">
                     <div class="text-1">HOPESON<span>INTER</span></div>
                     <div class="text-2">Welcome</div>
-                    <div class="grp-4">DOWNLOAD APP</div>
+                    <div class="grp-4"><a href="https://hopesoninter.000webhostapp.com/hopesoninter_d1.0.2.zip">DOWNLOAD APP</a></div>
                 </div>
             </div>
         </div>

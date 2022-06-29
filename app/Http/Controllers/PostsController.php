@@ -126,9 +126,16 @@ class PostsController extends Controller
             return $this->return_error('Post not in your community', 'ERR');
         }
 
+        /* ONLINE */
+        $media_name = $id . "_" . $fields['position'] . "_post_media." . "jpeg";
+        $media_url = "storage/media/posts/" . $media_name;
+        file_put_contents($media_url, base64_decode($fields['media']));
+
+        /* LOCAL
         $media = $request->file('media');
         $media_name = $id . "_" . $fields['position'] . "_post_media." . $media->extension();
         $media_url = $media->storeAs('public/media/posts', $media_name); // Switch
+        */
 
         $post_media = new PostMedia();
         $post_media->name = $fields['name'];

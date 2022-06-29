@@ -157,9 +157,16 @@ class CommunitiesController extends Controller
             return $this->return_error('This is not your community', 'ERR');
         }
 
+        /* ONLINE */
+        $media_name = $id . "_" . $fields['position'] . "_community_media." . "jpeg";
+        $media_url = "storage/media/communities/" . $media_name;
+        file_put_contents($media_url, base64_decode($fields['media']));
+
+        /* LOCAL
         $media = $request->file('media');
         $media_name = $id . "_" . $fields['position'] . "_community_media." . $media->extension();
         $media_url = $media->storeAs('public/media/communities', $media_name); // Switch
+        */
 
         $community_media = new CommunityMedia();
         $community_media->name = $fields['name'];
