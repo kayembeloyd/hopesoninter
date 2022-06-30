@@ -71,6 +71,15 @@ class MessagesController extends Controller
 
         $message2 = Message::create($fields);
         $chat2 = $chat->chat_with_user->chats->where('chat_with_id', auth()->user()->id)->first();
+        if (!$chat2){
+            if ($chat->type == 'one-to-one'){
+                $chat2 = Chat::create([
+                    'type' => 'one-to-one',
+                    'owner_id' => $fields['to_uid'],
+                    'chat_with_id' => auth()->user()->id
+                ]);
+            }
+        }
         $message2->chat()->associate($chat2->id);
         $message2->save();
 
