@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Chat;
 use App\Models\Message;
 
+use App\Events\SendMessageEvent;
+
 use App\Http\Resources\ResourceBuilder; 
 
 use Illuminate\Http\Request;
@@ -71,6 +73,10 @@ class MessagesController extends Controller
         $chat2 = $chat->chat_with_user->chats->where('chat_with_id', auth()->user()->id)->first();
         $message2->chat()->associate($chat2->id);
         $message2->save();
+
+        // Make event
+        event(new SendMessageEvent($message));
+        event(new SendChatMessageEvent($message));
 
         return response([
             'status' => 'success',
