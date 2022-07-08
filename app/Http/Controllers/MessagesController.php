@@ -6,6 +6,7 @@ use App\Models\Chat;
 use App\Models\Message;
 
 use App\Events\SendMessageEvent;
+use App\Events\SendChatMessageEvent;
 
 use App\Http\Resources\ResourceBuilder; 
 
@@ -68,7 +69,9 @@ class MessagesController extends Controller
         $message = Message::create($fields);
         $message->chat()->associate($chat->id);
         $message->save();
-
+        $message->chat->last_message()->associate($message->id);
+        $message->save();
+        
         $message2 = Message::create($fields);
         $chat2 = $chat->chat_with_user->chats->where('chat_with_id', auth()->user()->id)->first();
         if (!$chat2){
@@ -82,6 +85,9 @@ class MessagesController extends Controller
         }
         $message2->chat()->associate($chat2->id);
         $message2->save();
+        $message2->chat->last_message()->associate($message2->id);
+        $message2->save();
+
 
         // Make event
         event(new SendMessageEvent($message));
