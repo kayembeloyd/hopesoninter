@@ -162,23 +162,8 @@ class CommunitiesController extends Controller
         /* ONLINE */
         $media_name = $id . "_" . $fields['position'] . "_community_media." . "jpeg";
         $media_url = "storage/media/communities/" . $media_name;
-
-        // new line
         $media_url = Storage::disk('s3')->put('/storage/media/communities/' . $media_name, base64_decode($fields['media']));
-
         $media_url = Storage::disk('s3')->url('/storage/media/communities/' . $media_name);
-        // file_put_contents($media_url, base64_decode($fields['media']));
-
-
-
-        
-        // $image = $request->file('image');
-        // $image_name = $id . "_" . $fields['position'] . "_post_image." . $image->extension();
-        // $image_path = $image->storeAs('public/images', $image_name); // Switch
-        // $image_path = Storage::disk('s3')->put('/images/' . $image_name, file_get_contents($image)); // Switch
-
-
-
 
         /* LOCAL
         $media = $request->file('media');
