@@ -166,6 +166,7 @@ class CommunitiesController extends Controller
         // new line
         $media_url = Storage::disk('s3')->put('/storage/media/communities/' . $media_name, base64_decode($fields['media']));
 
+        $media_url = Storage::disk('s3')->url('/storage/media/communities/' . $media_name);
         // file_put_contents($media_url, base64_decode($fields['media']));
 
 
