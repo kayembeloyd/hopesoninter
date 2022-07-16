@@ -129,7 +129,8 @@ class PostsController extends Controller
         /* ONLINE */
         $media_name = $id . "_" . $fields['position'] . "_post_media." . "jpeg";
         $media_url = "storage/media/posts/" . $media_name;
-        file_put_contents($media_url, base64_decode($fields['media']));
+        $media_url = Storage::disk('s3')->put('/storage/media/posts/' . $media_name, base64_decode($fields['media']));
+        $media_url = Storage::disk('s3')->url('/storage/media/posts/' . $media_name);
 
         /* LOCAL
         $media = $request->file('media');
