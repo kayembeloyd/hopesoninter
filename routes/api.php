@@ -48,6 +48,7 @@ Route::middleware('auth:sanctum')->post('/communities/{id}/important-contacts/{i
 /* TESTED */ Route::middleware('auth:sanctum')->delete('/communities/{id}', [CommunitiesController::class, 'delete']); 
 /* TESTED */ Route::middleware('auth:sanctum')->put('/communities/{id}', [CommunitiesController::class, 'update']); 
 /* TESTED */ Route::middleware('auth:sanctum')->get('/communities/{id}/users', [CommunitiesController::class, 'members']); 
+/* TESTED */ Route::middleware('auth:sanctum')->get('/communities/{id}/membership-requests', [CommunitiesController::class, 'usersRequestingMembership']); 
 /* TESTED */ Route::middleware('auth:sanctum')->put('/communities/{id}/users/{uid}', [CommunitiesController::class, 'addMember']); 
 /* TESTED */ Route::middleware('auth:sanctum')->delete('/communities/{id}/users/{uid}', [CommunitiesController::class, 'removeMember']); 
 /* TESTED */ Route::middleware('auth:sanctum')->get('/communities/{id}/user/request-membership', [CommunitiesController::class, 'requestMembership']);  

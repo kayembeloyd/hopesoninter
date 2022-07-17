@@ -272,6 +272,32 @@ class CommunitiesController extends Controller
         return ResourceBuilder::collection($members);
     }
 
+    public function usersRequestingMembership($id){
+        if (auth()->user()->access != 'admin'){
+            if (auth()->user()->access != 'community_leader'){
+                return $this->return_error('you are not allowed to accept this membership request', 'ERR');
+            }
+        }
+ 
+        $community = auth()->user()->community;
+        
+        if (auth()->user()->access == 'admin'){
+            $community = Community::find($id);
+
+            if (!$community){
+                return $this->return_error('community not found', 'ERR');
+            }
+        }
+
+        if (!$community){
+            return $this->return_error('community not found', 'ERR');
+        }
+
+        $members = $community->membership_requestees;
+
+        return ResourceBuilder::collection($members);
+    }
+
     public function addMember($id, $uid)
     {
         if (auth()->user()->access != 'admin'){ 
